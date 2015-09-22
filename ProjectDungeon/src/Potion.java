@@ -1,5 +1,5 @@
 
-public class Potion implements Loot {
+public class Potion extends Loot {
 	protected int healingPoint ;
 	
 	public Potion (int healingPoint){
@@ -17,23 +17,20 @@ public class Potion implements Loot {
 	 * add the healingPoint of the potion to the user's life ceil by the user maxLife
 	 * @param user player who use the potion
 	 */
-	public void use (Player user){
-		
+	public void use (Player user) throws Exception{
+		super.use (user);
+		System.out.print ("Your potion heal you by ");
+		if (user.getLife()+this.healingPoint<user.getMaxLife()){
+			user.setLife(user.getLife()+this.healingPoint);
+			System.out.print (healingPoint);
+		}else{
+			System.out.print (user.getMaxLife()-user.getLife());
+			user.setLife(user.getMaxLife());
+		}
+		System.out.println (" point(s) you got "+
+				user.getLife()+" life point(s)");
 	}
-	/**
-	 * add the potion to the inventory of the player 
-	 * @param user player who pick up the potion 
-	 */
-	public void pickUp (Player user){
-		
+	public String toString (){
+		return "Potion(s) "+this.healingPoint+" healing points";
 	}
-	/**
-	 * remove the potion from the user inventory and add it to the floor of the current room of
-	 * the user 
-	 * @param user player who throw down the potion
-	 */
-	public void throwDown (Player user){
-		
-	}
-	
 }

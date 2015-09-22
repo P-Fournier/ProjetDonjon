@@ -1,5 +1,5 @@
 
-public class Key implements Loot {
+public class Key extends Loot {
 	
 	
 	/**
@@ -10,18 +10,7 @@ public class Key implements Loot {
 	public void use (Player user){
 		
 	}
-	/**
-	 * ramasser la cle et la met dans l'inventaire de l'utilisateur passé en paramètre
-	 * @param user utilisateur qui ramasse la cle
-	 */
-	public void pickUp (Player user){
-		
-	}
-	/**
-	 * jette la cle de l'inventaire de l'utilisateur sur le sol de la salle courante de l'utilisateur
-	 * @param user utilisateur qui jette la cle
-	 */
-	public void throwDown (Player user){
-		
+	public String toString (){
+		return "Key(s)";
 	}
 }

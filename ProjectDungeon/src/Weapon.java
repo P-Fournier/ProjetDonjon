@@ -1,5 +1,5 @@
 
-public class Weapon implements Loot {
+public class Weapon extends Loot {
 	protected int bonusDamage ;
 	protected String name ;
 	
@@ -29,22 +29,12 @@ public class Weapon implements Loot {
 	 * equip the weapon to the user
 	 * @param user player who use the weapon
 	 */
-	public void use (Player user){
-		
+	public void use (Player user) throws Exception{
+		super.use(user);
+		user.getInventory().put(user.getEquiped(),user.getInventory().get(user.getEquiped())+1); // on range l'arme équipé dans l'inventaire
+		user.setEquiped(this);
 	}
-	/**
-	 * add the weapon to the inventory of the user
-	 * @param user player who pick up the weapon 
-	 */
-	public void pickUp (Player user){
-		
+	public String toString (){
+		return this.name+" "+this.bonusDamage+" damage points";
 	}
-	/**
-	 * remove the weapon from the user inventory to the floor of the current of the user
-	 * @param user player who throw down the user
-	 */
-	public void throwDown (Player user){
-		
-	}
-	
 }

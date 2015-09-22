@@ -1,10 +1,11 @@
 import java.util.*;
 public class Player {
+	static Scanner sc = new Scanner (System.in);
 	protected int life ;
 	protected int maxLife ;
-	protected HashMap <Loot,Integer> inventory ; // taille maximum de l'inventaire
+	protected LinkedHashMap <Loot,Integer> inventory ; // taille maximum de l'inventaire
 	protected Weapon equiped ;
-	protected Room currency;
+	protected Room currentRoom;
 	/*
 	 * protected int level ;
      * protected int experience ;
@@ -12,7 +13,9 @@ public class Player {
 	 * protected int higherDamage ;
 	*/
 	public Player (){
-		
+		inventory = new LinkedHashMap<Loot,Integer>();
+		inventory.put(new Key(), 2);
+		inventory.put(new Potion (10), 2);
 	}
 	
 	public int getLife() {
@@ -35,7 +38,7 @@ public class Player {
 		return inventory;
 	}
 	
-	public void setInventory(HashMap<Loot, Integer> inventory) {
+	public void setInventory(LinkedHashMap<Loot, Integer> inventory) {
 		this.inventory = inventory;
 	}
 	
@@ -46,12 +49,46 @@ public class Player {
 	public void setEquiped(Weapon equiped) {
 		this.equiped = equiped;
 	}
-	public Room getCurrency() {
-		return currency;
+	public Room getCurrentRoom() {
+		return currentRoom;
 	}
 
 
-	public void setCurrency(Room currency) {
-		this.currency = currency;
+	public void setCurrentRoom(Room currency) {
+		this.currentRoom = currency;
+	}
+	
+	public void showInventory (){
+		int i = 1;
+		System.out.println ("Choose an item to make an action or cancel : ");
+		for (Loot l : inventory.keySet()){
+			System.out.println (i+" ) "+inventory.get(l)+" x "+l);
+			i++;
+		}
+		System.out.println(i+" ) Cancel");
+		int selection;
+		do{
+			selection = sc.nextInt();
+		}while ((selection > i)&&(selection < 0));
+		if (selection != i){
+			i = 1 ;
+			for (Loot l : inventory.keySet()){
+				if (i==selection){
+					l.chooseAction(this);
+					break;
+				}
+				i++;
+			}
+		}
+	}
+	public void removeFromInventory (Loot l) throws Exception{
+		if (!inventory.containsKey(l)){
+			throw new Exception ("inventory doesn't contents the loot");
+		}else{
+			inventory.put(l,inventory.get(l)-1);
+			if (inventory.get(l)==0){
+				inventory.remove(l);
+			}
+		}	
 	}
 }
