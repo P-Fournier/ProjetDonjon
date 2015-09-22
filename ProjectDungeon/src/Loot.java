@@ -14,7 +14,7 @@ public abstract class Loot {
 		boolean action = false ;
 		do {
 			action = true;
-			String choose = sc.next();
+			String choose = sc.nextLine();
 			switch (choose){
 				case "use":
 					try {
@@ -39,6 +39,7 @@ public abstract class Loot {
 		}while (!action);
 	}
 	public void throwDown (Player user) throws Exception{
+		System.out.println("throw down");
 		user.removeFromInventory(this);
 		if (user.getCurrentRoom().getOnTheFloor().containsKey(this)){
 			user.getCurrentRoom().getOnTheFloor().put(this,user.getCurrentRoom().getOnTheFloor().get(this) + 1 );
