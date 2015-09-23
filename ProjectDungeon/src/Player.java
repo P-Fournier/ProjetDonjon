@@ -3,7 +3,7 @@ public class Player {
 	static Scanner sc = new Scanner (System.in);
 	protected int life ;
 	protected int maxLife ;
-	protected LinkedHashMap <Loot,Integer> inventory ; // taille maximum de l'inventaire
+	protected LinkedHashMap <Loot,Integer> inventory ; // maximum size of the inventory
 	protected Weapon equiped ;
 	protected Room currentRoom;
 	/*

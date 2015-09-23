@@ -1,13 +1,36 @@
 import java.util.*;
+
 public class Room {
+	
+	protected final String name;
+	protected Map<String,Room> neighbors = new HashMap<String,Room>();
+	
 	protected HashMap<String,Door> exit ;
-	protected HashMap<Door,Room> neighbor ;
+//	protected HashMap<Door,Room> neighbor ;
 	protected Door button ;
 	protected Monster monster ;
 	protected Loot chest ;
 	protected HashMap<Loot,Integer> onTheFloor ;
 	
-	public Room (HashMap<String,Door>exit , HashMap<Door,Room> neighbor, Door button , Monster monster , Loot chest ){
+	//CONSTRUCTEUR SUIVANT LE TD /!\ réfléchir sur les modifications pour insérer les autres attributs
+	public Room(String name){
+		this.name = name;
+	}
+	
+	public Room go(String direction){
+		if(neighbors.containsKey(direction)){
+			return neighbors.get(direction);
+		}
+		else{
+			return null;
+		}
+	}
+	
+	public void setNeighbor(String direction, Room neighbor){
+		neighbors.put(direction, neighbor);
+	}
+	
+/*	public Room (HashMap<String,Door>exit , HashMap<Door,Room> neighbor, Door button , Monster monster , Loot chest ){
 		
 		this.exit = exit ;
 		this.neighbor = neighbor ;
@@ -16,7 +39,7 @@ public class Room {
 		this.chest = chest ;
 		this.onTheFloor = new HashMap <Loot,Integer> ();
 		
-	}
+	}*/
 
 	public HashMap<Loot, Integer> getOnTheFloor() {
 		return onTheFloor;
@@ -34,13 +57,13 @@ public class Room {
 		this.exit = exit;
 	}
 
-	public HashMap<Door, Room> getNeighbor() {
+/*	public HashMap<Door, Room> getNeighbor() {
 		return neighbor;
 	}
 
 	public void setNeighbor(HashMap<Door, Room> neighbor) {
 		this.neighbor = neighbor;
-	}
+	}*/
 
 	public Door getButton() {
 		return button;
