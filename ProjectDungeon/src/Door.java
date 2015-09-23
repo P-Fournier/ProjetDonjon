@@ -25,7 +25,7 @@ public class Door {
 	public void setLockedKey(boolean lockedKey) {
 		this.lockedKey = lockedKey;
 	}
-
+	
 	public boolean isLockedMonster() {
 		return lockedMonster;
 	}

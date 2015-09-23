@@ -1,37 +1,37 @@
 import java.util.*;
 public class Room {
-	protected HashMap<String,Door> exit ;
+	protected HashMap<String,Door> doors ;
 	protected HashMap<Door,Room> neighbor ;
 	protected Door button ;
 	protected Monster monster ;
-	protected Loot chest ;
-	protected HashMap<Loot,Integer> onTheFloor ;
+	protected Item chest ;
+	protected HashMap<Item,Integer> onTheFloor ;
 	
-	public Room (HashMap<String,Door>exit , HashMap<Door,Room> neighbor, Door button , Monster monster , Loot chest ){
+	public Room (HashMap<String,Door>exit , HashMap<Door,Room> neighbor, Door button , Monster monster , Item chest ){
 		
-		this.exit = exit ;
+		this.doors = exit ;
 		this.neighbor = neighbor ;
 		this.button = button ;
 		this.monster = monster ;
 		this.chest = chest ;
-		this.onTheFloor = new HashMap <Loot,Integer> ();
+		this.onTheFloor = new HashMap <Item,Integer> ();
 		
 	}
 
-	public HashMap<Loot, Integer> getOnTheFloor() {
+	public HashMap<Item, Integer> getOnTheFloor() {
 		return onTheFloor;
 	}
 
-	public void setOnTheFloor(HashMap<Loot, Integer> onTheFloor) {
+	public void setOnTheFloor(HashMap<Item, Integer> onTheFloor) {
 		this.onTheFloor = onTheFloor;
 	}
 
 	public HashMap<String, Door> getExit() {
-		return exit;
+		return doors;
 	}
 
 	public void setExit(HashMap<String, Door> exit) {
-		this.exit = exit;
+		this.doors = exit;
 	}
 
 	public HashMap<Door, Room> getNeighbor() {
@@ -58,11 +58,11 @@ public class Room {
 		this.monster = monster;
 	}
 
-	public Loot getChest() {
+	public Item getChest() {
 		return chest;
 	}
 
-	public void setChest(Loot chest) {
+	public void setChest(Item chest) {
 		this.chest = chest;
 	}
 	/**
@@ -72,7 +72,22 @@ public class Room {
 	public void pickUpOnTheFloor (Player user){
 		
 	}
-	
+	public void addToOnTheFloor(Item l){
+		if (this.onTheFloor.containsKey(l)){
+			onTheFloor.put(l, onTheFloor.get(l)+1);
+		}else{
+			onTheFloor.put(l, 1);
+		}
+	}
+	/**
+	 * affiche les doors fermé a cle (la chaine de caractere associé dans doors) et visible
+	 */
+	public void showLockedKeyDoor(){
+		
+	}
+	/**
+	 * afficher les doors visible , coffre si il y en a et button
+	 */
 	public void getDescription (){
 		
 	}
